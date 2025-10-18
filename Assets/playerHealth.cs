@@ -39,12 +39,19 @@ public class playerHealth : MonoBehaviour
 
     private System.Collections.IEnumerator DoKnockback(Rigidbody2D enemyRb, Vector2 direction)
     {
-        collisionEnabled = false;
-        Vector2 originalVelocity = enemyRb.linearVelocity;
-        enemyRb.linearVelocity = direction * knockbackForce;
-        yield return new WaitForSeconds(knockbackDuration);
+    collisionEnabled = false;
 
-        collisionEnabled = true;
-        enemyRb.linearVelocity = originalVelocity; 
+    // ✅ Completely wipe old momentum
+    enemyRb.linearVelocity = Vector2.zero;
+
+    // ✅ Apply fresh knockback
+    enemyRb.linearVelocity = direction * knockbackForce;
+
+    yield return new WaitForSeconds(knockbackDuration);
+
+    // ✅ Stop it again so no long-term drift
+    enemyRb.linearVelocity = Vector2.zero;
+
+    collisionEnabled = true;
     }
 }
