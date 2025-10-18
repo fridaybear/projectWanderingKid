@@ -5,15 +5,13 @@ public class EnemyTracking : MonoBehaviour
 {
     public int speed = 2;
     public GameObject player;
-    public GameObject enemy;
 
     void Start()
     {
-        player = GameObject.Find("player");
-        enemy = GameObject.Find("enemy");      
+        player = GameObject.Find("player");    
     }
     void Update()
     {
-        enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, player.transform.position, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
     }
 }
