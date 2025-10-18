@@ -26,6 +26,10 @@ public class resetEnemyPosition : MonoBehaviour
 
         if (!IsInView(mainCam, transform.position))
         {
+            GetComponent<SpriteRenderer>().enabled = true;
+
+            GetComponent<Collider2D>().enabled = true;
+                
             transform.position = defaultPosition;
         }
         

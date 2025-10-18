@@ -13,7 +13,10 @@ public class EnemyHealth : MonoBehaviour
             if (HP <= 0)
             {
                 HP = 3;
-                transform.position = Vector2.zero; // Reset position
+                GetComponent<SpriteRenderer>().enabled = false;
+
+                GetComponent<Collider2D>().enabled = false;
+
             }
 
         }
