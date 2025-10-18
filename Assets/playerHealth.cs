@@ -41,15 +41,12 @@ public class playerHealth : MonoBehaviour
     {
     collisionEnabled = false;
 
-    // ✅ Completely wipe old momentum
     enemyRb.linearVelocity = Vector2.zero;
 
-    // ✅ Apply fresh knockback
     enemyRb.linearVelocity = direction * knockbackForce;
 
     yield return new WaitForSeconds(knockbackDuration);
 
-    // ✅ Stop it again so no long-term drift
     enemyRb.linearVelocity = Vector2.zero;
 
     collisionEnabled = true;
