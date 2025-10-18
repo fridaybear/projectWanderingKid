@@ -2,13 +2,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int maxHP = 3;
-    public int HP;
-
-    void Start()
-    {
-        HP = maxHP;   
-    }
+    public int HP = 3;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -16,17 +10,12 @@ public class EnemyHealth : MonoBehaviour
         {
             HP -= 1;
 
-            // Check if enemy is dead
             if (HP <= 0)
             {
-                HP = maxHP;                    // Reset HP
+                HP = 3;
                 transform.position = Vector2.zero; // Reset position
-
-                // Optional: reset speed or other stats here
-                EnemyTracking et = GetComponent<EnemyTracking>();
-                if (et != null)
-                    et.speed = 2;  // default speed
             }
+
         }
     }
 }
