@@ -7,8 +7,9 @@ public class playerHealth : MonoBehaviour
     public bool collisionEnabled = true;
     public int currentHealth;
     public float knockbackForce = 10f;
-    public float knockbackDuration = 0.1f; // how long the push lasts
+    public float knockbackDuration = 0.2f; // how long the push lasts
 
+    public Health heartsUI;
     void Start()
     {
         currentHealth = baseHealth;   
@@ -25,14 +26,16 @@ public class playerHealth : MonoBehaviour
                 StartCoroutine(DoKnockback(enemyRb, direction));
             }
 
-            if (currentHealth > 0)
+            if (currentHealth > 1)
             {
-                currentHealth -= 1; 
+                currentHealth -= 1;
+                heartsUI.UpdateHearts(currentHealth);
             }
             else
             {
                 transform.position = new Vector2(0, 0);
                 currentHealth = baseHealth;
+                heartsUI.UpdateHearts(currentHealth);
             }
         }
     }
