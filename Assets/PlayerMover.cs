@@ -17,19 +17,19 @@ public class playerMover : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (Keyboard.current.wKey.isPressed) { acceleration = new Vector2(0, 0);  acceleration += Vector2.up; speed = fixedSpeed; }
-        if (Keyboard.current.sKey.isPressed) { acceleration = new Vector2(0, 0); acceleration += Vector2.down; speed = fixedSpeed; }
-        if (Keyboard.current.aKey.isPressed) { acceleration = new Vector2(0, 0); acceleration += Vector2.left; speed = fixedSpeed; }
-        if (Keyboard.current.dKey.isPressed) { acceleration = new Vector2(0, 0); acceleration += Vector2.right; speed = fixedSpeed; }
+        acceleration = Vector2.zero;
 
-        if (rb.linearVelocity == Vector2.zero)
+        if (Keyboard.current.wKey.isPressed) { acceleration += Vector2.up; }
+        if (Keyboard.current.sKey.isPressed) { acceleration += Vector2.down; }
+        if (Keyboard.current.aKey.isPressed) { acceleration += Vector2.left; }
+        if (Keyboard.current.dKey.isPressed) { acceleration += Vector2.right; }
+
+        if (acceleration == Vector2.zero)
         {
-            acceleration.Normalize();
-            rb.linearVelocity = acceleration * speed;
-
+            rb.linearVelocity = Vector2.zero;
         } else
         {
-            speed = Mathf.MoveTowards(speed, 0f, 5f * Time.fixedDeltaTime);
+            acceleration.Normalize();
             rb.linearVelocity = acceleration * speed;
         }
 
