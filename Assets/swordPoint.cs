@@ -1,16 +1,11 @@
 using UnityEngine;
 
-public class swordPoint : MonoBehaviour
+public class ConstantRotate : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public float rotationSpeed = 180f; // Degrees per second
 
-    // Update is called once per frame
     void Update()
     {
-        
+        transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
     }
 }
