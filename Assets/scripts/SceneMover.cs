@@ -10,9 +10,10 @@ public class sceneadjuster : MonoBehaviour
 
     public int XaxisOffset = 22;
     public int YaxisOffset = 10;
+
+
     void Start()
     {
-        SceneCamera = transform.Find("Main Camera").GetComponent<Camera>();
         player = transform.Find("player").gameObject;
 
     }
