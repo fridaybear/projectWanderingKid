@@ -33,7 +33,10 @@ public class playerHealth : MonoBehaviour
             }
             else
             {
-                transform.position = new Vector2(0, 0);
+                Rigidbody2D rb = GetComponent<Rigidbody2D>();
+                Debug.Log("Respawned at " + rb.position);
+                rb.linearVelocity = Vector2.zero;
+                rb.position = new Vector2(3.4f, -0.3f);
                 currentHealth = baseHealth;
                 heartsUI.UpdateHearts(currentHealth);
             }
