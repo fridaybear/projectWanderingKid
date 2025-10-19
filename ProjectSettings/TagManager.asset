@@ -6,6 +6,7 @@ TagManager:
   tags:
   - enemy
   - weapon
+  - cutsceneTrigger
   layers:
   - Default
   - TransparentFX
