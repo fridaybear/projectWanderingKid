@@ -14,6 +14,8 @@ public class playerHealth : MonoBehaviour
     public Transform respawnPoint;
 
     private Rigidbody2D rb;
+
+    public GameObject playerItem;
     void Start()
     {
         currentHealth = baseHealth;
@@ -45,7 +47,7 @@ public class playerHealth : MonoBehaviour
 
                 currentHealth = baseHealth;
                 heartsUI.UpdateHearts(currentHealth);
-
+                playerItem.SetActive(false);
 
             }
         }
