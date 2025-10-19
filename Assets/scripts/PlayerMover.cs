@@ -9,7 +9,7 @@ public class playerMover : MonoBehaviour
     Rigidbody2D rb;
     Vector2 acceleration = new Vector2(0, 0);
 
-
+    public bool canMove = true;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -17,6 +17,12 @@ public class playerMover : MonoBehaviour
     void FixedUpdate()
     {
 
+
+         if (!canMove)
+    {
+        rb.linearVelocity = Vector2.zero;
+        return;
+    }
         acceleration = Vector2.zero;
 
         if (Keyboard.current.wKey.isPressed) { acceleration += Vector2.up; }

@@ -10,9 +10,14 @@ public class playerHealth : MonoBehaviour
     public float knockbackDuration = 0.2f; // how long the push lasts
 
     public Health heartsUI;
+
+    public Transform respawnPoint;
+
+    private Rigidbody2D rb;
     void Start()
     {
-        currentHealth = baseHealth;   
+        currentHealth = baseHealth;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -33,28 +38,35 @@ public class playerHealth : MonoBehaviour
             }
             else
             {
-                Rigidbody2D rb = GetComponent<Rigidbody2D>();
-                Debug.Log("Respawned at " + rb.position);
-                rb.linearVelocity = Vector2.zero;
-                rb.position = new Vector2(3.4f, -0.3f);
+
+
+
+                transform.position = respawnPoint.position;
+
                 currentHealth = baseHealth;
                 heartsUI.UpdateHearts(currentHealth);
+
+
             }
         }
     }
 
     private System.Collections.IEnumerator DoKnockback(Rigidbody2D enemyRb, Vector2 direction)
     {
-    collisionEnabled = false;
+        collisionEnabled = false;
 
-    enemyRb.linearVelocity = Vector2.zero;
+        enemyRb.linearVelocity = Vector2.zero;
 
-    enemyRb.linearVelocity = direction * knockbackForce;
+        enemyRb.linearVelocity = direction * knockbackForce;
 
-    yield return new WaitForSeconds(knockbackDuration);
+        yield return new WaitForSeconds(knockbackDuration);
 
-    enemyRb.linearVelocity = Vector2.zero;
+        enemyRb.linearVelocity = Vector2.zero;
 
-    collisionEnabled = true;
+        collisionEnabled = true;
     }
+
+
+
+
 }
